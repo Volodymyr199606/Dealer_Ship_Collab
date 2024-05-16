@@ -1,7 +1,19 @@
 package com.pluralsight;
 
-public class Main {
-    public static void main(String[] args) {
-        System.out.println("Hello world!");
+import com.pluralsight.models.Dealership;
+import com.pluralsight.ui.UserInterface;
+
+public class Main
+{
+    static Dealership dealership;
+
+
+    public static void main(String[] args)
+    {
+
+        UserInterface userInterface = new UserInterface();
+        userInterface.run();
+
+
     }
 }
