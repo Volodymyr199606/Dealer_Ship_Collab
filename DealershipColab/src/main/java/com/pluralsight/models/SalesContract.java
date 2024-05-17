@@ -1,5 +1,7 @@
 package com.pluralsight.models;
 
+import com.sun.source.tree.BinaryTree;
+
 public class SalesContract extends Contract {
 
     private double SalesTaxAmount = 0.05;
@@ -56,6 +58,20 @@ public class SalesContract extends Contract {
         SalesTaxAmount = salesTaxAmount;
     }
 
+    public double calculator(double totalPrice, )
+    {
+
+        float loanAmount;
+        float interestRate;
+        float timePeriod;
+
+        interestRate = interestRate /(12 * 100);
+        timePeriod = timePeriod * 12;
+        double emi = (loanAmount * interestRate (float)Math.pow(1+ interestRate, timePeriod))/ (float)(Math.pow(1+ interestRate,timePeriod)-1);
+        return (emi);
+
+    }
+
 
     @Override
     public double getMonthlyPayment()
@@ -64,11 +80,19 @@ public class SalesContract extends Contract {
         {
             if(getTotalPrice() <= 10000)
             {
+                float loanAmount = getTotalPrice();
+                float interestRate = 4.25;
+                float timePeriod = 48;
 
-                double monthlyPercentage = 0.0525; //5.25%
-                double monthlyPayment = monthlyPercentage / 24;
-                double monthlyPaymentAmount = getTotalPrice() * monthlyPayment;
-                return monthlyPaymentAmount;
+                interestRate = interestRate /(12 * 100);
+                timePeriod = timePeriod * 12;
+                double emi = (loanAmount * interestRate (float)Math.pow(1+ interestRate, timePeriod))/ (float)(Math.pow(1+ interestRate,timePeriod)-1);
+                return (emi);
+
+//                double monthlyPercentage = 0.0525; //5.25%
+//                double monthlyPayment = monthlyPercentage / 24;
+//                double monthlyPaymentAmount = getTotalPrice() * monthlyPayment;
+//                return monthlyPaymentAmount;
 
 
             }
