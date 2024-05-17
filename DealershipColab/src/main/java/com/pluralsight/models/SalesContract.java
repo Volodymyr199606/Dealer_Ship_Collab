@@ -48,6 +48,7 @@ public class SalesContract extends Contract {
     @Override
     public double getMonthlyPayment()
     {
+
         if(isFinance())
         {
             if(getTotalPrice() >= 10000)
@@ -76,11 +77,9 @@ public class SalesContract extends Contract {
 
     public double getTotalPrice()
     {
-        double salesTaxAmount = super.getTotalPrice() + SalesTaxAmount;
-        double totalPrice = super.getTotalPrice() + salesTaxAmount + RecordingFee + ProcessingFee;
-
-
-        return totalPrice;
+        double totalprice = super.getTotalPrice();
+        double salesTaxAmount = totalprice + SalesTaxAmount;
+        return totalprice + salesTaxAmount + RecordingFee + ProcessingFee;
 
     }
 
