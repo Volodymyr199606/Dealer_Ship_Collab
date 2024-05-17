@@ -8,7 +8,7 @@ public class SalesContract extends Contract {
     private boolean finance;
     private double monthlyPayment;
 
-    public SalesContract (String fullName, String customerEmail, Vehicle vehicleSold, double totalPrice, double monthlyPayment, double SalesTaxAmount, int RecodringFee, double ProcessingFee, boolean finance) {
+    public SalesContract (String fullName, String customerEmail, String vehicleSold, double totalPrice, double monthlyPayment, double SalesTaxAmount, int RecodringFee, double ProcessingFee, boolean finance) {
         super(fullName, customerEmail, vehicleSold, totalPrice, monthlyPayment);
         this.SalesTaxAmount = SalesTaxAmount;
         this.RecodringFee = RecodringFee;
@@ -48,7 +48,7 @@ public class SalesContract extends Contract {
 
     public double getSalesTaxAmount()
     {
-        return SalesTaxAmount;
+        return SalesTaxAmount;//already returns 0.05 5%
     }
 
     public void setSalesTaxAmount(double salesTaxAmount)
@@ -56,16 +56,36 @@ public class SalesContract extends Contract {
         SalesTaxAmount = salesTaxAmount;
     }
 
+
+    @Override
     public double getMonthlyPayment()
     {
-        return monthlyPayment = 0;
+        if(isFinance())
+        {
+            if(getTotalPrice() <= 10000)
+            {
+
+                double monthlyPercentage = 0.0525; //5.25%
+                double monthlyPayment = monthlyPercentage / 24;
+                double monthlyPaymentAmount = getTotalPrice() * monthlyPayment;
+                return monthlyPaymentAmount;
+
+
+            }
+            else
+            {
+                return 0;
+
+            }
+
+        }
+
+        return getTotalPrice();
     }
 
     public double getTotalPrice()
     {
-        return 0;
-    }
-    {
+
 
     }
 }

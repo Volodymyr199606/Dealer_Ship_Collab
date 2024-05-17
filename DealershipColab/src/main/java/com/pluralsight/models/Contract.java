@@ -6,11 +6,11 @@ public abstract class Contract
     private String address;
     private String phoneNumber;
     private String customerEmail;
-    private Vehicle vehicleSold;
+    private String vehicleSold;
     private double totalPrice;
     private double monthlyPayment;
 
-    public Contract(String fullName, String customerEmail, Vehicle vehicleSold, double totalPrice, double monthlyPayment) {
+    public Contract(String fullName, String customerEmail, String vehicleSold, double totalPrice, double monthlyPayment) {
         this.fullName = fullName;
         this.customerEmail = customerEmail;
         this.vehicleSold = vehicleSold;
@@ -34,11 +34,11 @@ public abstract class Contract
         this.customerEmail = customerEmail;
     }
 
-    public Vehicle getVehicleSold() {
+    public String getVehicleSold() {
         return vehicleSold;
     }
 
-    public void setVehicleSold(Vehicle vehicleSold) {
+    public void setVehicleSold(String vehicleSold) {
         this.vehicleSold = vehicleSold;
     }
 
