@@ -10,15 +10,15 @@ class SalesContractTests
     public void theAmountMonthlyPayment()
     {
         //arrange
-        Contract salesContract = new SalesContract("Ana","Ana@gmail.com","yes", 8000, 24, 0.05,100,295, true);
-        double expectedMonthlyPayment = 70;
+        Contract salesContract = new SalesContract("Ana","Ana@gmail.com","yes", 10000, 48, 0.05,100,295, true);
+        double expectedMonthlyPayment = 226.91;
 
 
         //act
         double actualReturnValue = salesContract.getMonthlyPayment();
 
         //assert
-        assertEquals(expectedMonthlyPayment, actualReturnValue, "Becuae the amount is under 10000 it is a monthly payment of $70 per month.");
+        assertEquals(expectedMonthlyPayment, actualReturnValue, "Becuae the amount is under 10000 it is a monthly payment of $226.91 per month.");
 
     }
 

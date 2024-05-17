@@ -4,17 +4,16 @@ import com.sun.source.tree.BinaryTree;
 
 public class SalesContract extends Contract {
 
-    private double SalesTaxAmount = 0.05;
-    private int RecodringFee;
-    private double ProcessingFee;
-    private boolean finance;
-    private double monthlyPayment;
+    private static final double SalesTaxAmount = 0.05;
+    private static final int RecordingFee = 100;
+    private static final double ProcessingFee = 495;
+    private  boolean finance;
+    private  double monthlyPayment;
 
     public SalesContract (String fullName, String customerEmail, String vehicleSold, double totalPrice, double monthlyPayment, double SalesTaxAmount, int RecodringFee, double ProcessingFee, boolean finance) {
         super(fullName, customerEmail, vehicleSold, totalPrice, monthlyPayment);
-        this.SalesTaxAmount = SalesTaxAmount;
-        this.RecodringFee = RecodringFee;
-        this.ProcessingFee = ProcessingFee;
+
+
         this.finance = finance;
     }
 
@@ -33,19 +32,9 @@ public class SalesContract extends Contract {
         return ProcessingFee;
     }
 
-    public void setProcessingFee(double processingFee)
+    public int getRecordingFee()
     {
-        ProcessingFee = processingFee;
-    }
-
-    public int getRecodringFee()
-    {
-        return RecodringFee;
-    }
-
-    public void setRecodringFee(int recodringFee)
-    {
-        RecodringFee = recodringFee;
+        return RecordingFee;
     }
 
     public double getSalesTaxAmount()
@@ -53,24 +42,7 @@ public class SalesContract extends Contract {
         return SalesTaxAmount;//already returns 0.05 5%
     }
 
-    public void setSalesTaxAmount(double salesTaxAmount)
-    {
-        SalesTaxAmount = salesTaxAmount;
-    }
 
-    public double calculator(double totalPrice, )
-    {
-
-        float loanAmount;
-        float interestRate;
-        float timePeriod;
-
-        interestRate = interestRate /(12 * 100);
-        timePeriod = timePeriod * 12;
-        double emi = (loanAmount * interestRate (float)Math.pow(1+ interestRate, timePeriod))/ (float)(Math.pow(1+ interestRate,timePeriod)-1);
-        return (emi);
-
-    }
 
 
     @Override
@@ -78,21 +50,16 @@ public class SalesContract extends Contract {
     {
         if(isFinance())
         {
-            if(getTotalPrice() <= 10000)
+            if(getTotalPrice() >= 10000)
             {
-                float loanAmount = getTotalPrice();
-                float interestRate = 4.25;
-                float timePeriod = 48;
+                double loanAmount = getTotalPrice();
+                double interestRate = 4.25/100;
+                int timePeriod = 3;
 
                 interestRate = interestRate /(12 * 100);
                 timePeriod = timePeriod * 12;
-                double emi = (loanAmount * interestRate (float)Math.pow(1+ interestRate, timePeriod))/ (float)(Math.pow(1+ interestRate,timePeriod)-1);
-                return (emi);
-
-//                double monthlyPercentage = 0.0525; //5.25%
-//                double monthlyPayment = monthlyPercentage / 24;
-//                double monthlyPaymentAmount = getTotalPrice() * monthlyPayment;
-//                return monthlyPaymentAmount;
+                double emi = (loanAmount * interestRate * Math.pow(1+ interestRate, timePeriod))/ (Math.pow(1+ interestRate,timePeriod)-1);
+                return emi;
 
 
             }
@@ -109,9 +76,14 @@ public class SalesContract extends Contract {
 
     public double getTotalPrice()
     {
+        double salesTaxAmount = super.getTotalPrice() + SalesTaxAmount;
+        double totalPrice = super.getTotalPrice() + salesTaxAmount + RecordingFee + ProcessingFee;
 
+
+        return totalPrice;
 
     }
+
 }
 
 
