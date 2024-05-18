@@ -9,14 +9,13 @@ public class  SalesContract extends Contract
     private static final int RecordingFee = 100;
     private  double ProcessingFee ;
     private boolean finance;
-    private double monthlyPayment;
     private double interestRate = 4.25 / 100;
-    private int timePeriod = 48;
+
 
 
     public SalesContract(String fullName, String customerEmail, Vehicle vehicleSold, double totalPrice, double monthlyPayment, double SalesTaxAmount, int RecodringFee, double ProcessingFee, boolean finance)
     {
-        super(fullName, customerEmail, vehicleSold, totalPrice, 0);
+        super(fullName, customerEmail, vehicleSold, totalPrice, monthlyPayment);
         this.finance = finance;
 
     }
