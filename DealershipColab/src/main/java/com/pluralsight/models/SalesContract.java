@@ -84,7 +84,7 @@ public class  SalesContract extends Contract
         }
         else
         {
-            return 0;
+            return getTotalPrice();
         }
 
     }
