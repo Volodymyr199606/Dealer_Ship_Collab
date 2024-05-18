@@ -2,19 +2,23 @@ package com.pluralsight.models;
 
 import com.sun.source.tree.BinaryTree;
 
-public class SalesContract extends Contract {
+public class  SalesContract extends Contract
+{
 
     private static final double SalesTaxAmount = 0.05;
     private static final int RecordingFee = 100;
-    private static final double ProcessingFee = 495;
-    private  boolean finance;
-    private  double monthlyPayment;
+    private  double ProcessingFee ;
+    private boolean finance;
+    private double monthlyPayment;
+    private double interestRate = 4.25 / 100;
+    private int timePeriod = 48;
 
-    public SalesContract (String fullName, String customerEmail, String vehicleSold, double totalPrice, double monthlyPayment, double SalesTaxAmount, int RecodringFee, double ProcessingFee, boolean finance) {
-        super(fullName, customerEmail, vehicleSold, totalPrice, monthlyPayment);
 
-
+    public SalesContract(String fullName, String customerEmail, Vehicle vehicleSold, double totalPrice, double monthlyPayment, double SalesTaxAmount, int RecodringFee, double ProcessingFee, boolean finance)
+    {
+        super(fullName, customerEmail, vehicleSold, totalPrice, 0);
         this.finance = finance;
+
     }
 
     public boolean isFinance()
@@ -22,14 +26,9 @@ public class SalesContract extends Contract {
         return finance;
     }
 
-    public void setFinance(boolean finance)
+    public double getSalesTaxAmount()
     {
-        this.finance = finance;
-    }
-
-    public double getProcessingFee()
-    {
-        return ProcessingFee;
+        return SalesTaxAmount;
     }
 
     public int getRecordingFee()
@@ -37,53 +36,61 @@ public class SalesContract extends Contract {
         return RecordingFee;
     }
 
-    public double getSalesTaxAmount()
+    public double getProcessingFee()
     {
-        return SalesTaxAmount;//already returns 0.05 5%
+        if (getVehicleSold().getPrice() < 10000)
+        {
+            ProcessingFee = 295;
+            return ProcessingFee;
+        }
+        else
+        {
+            return ProcessingFee = 495;
+        }
+
     }
 
 
+    @Override
+    public double getTotalPrice()
 
+    {
+        double price = getSalesTaxAmount() + getRecordingFee() + getProcessingFee() + getVehicleSold().getPrice();
+
+        return price;
+
+    }
 
     @Override
     public double getMonthlyPayment()
     {
-
-        if(isFinance())
+        if (isFinance())
         {
-            if(getTotalPrice() >= 10000)
+            if (getTotalPrice() < 10000)
             {
                 double loanAmount = getTotalPrice();
-                double interestRate = 4.25/100;
-                int timePeriod = 3;
-
-                interestRate = interestRate /(12 * 100);
-                timePeriod = timePeriod * 12;
-                double emi = (loanAmount * interestRate * Math.pow(1+ interestRate, timePeriod))/ (Math.pow(1+ interestRate,timePeriod)-1);
-                return emi;
-
+                int timePeriod = 48;
+                interestRate = 5.25 / 100;
+                double monthlyPayment = (loanAmount * interestRate * Math.pow(1 + interestRate, timePeriod)) / (Math.pow(1 + interestRate, timePeriod) - 1);
+                return monthlyPayment;
 
             }
-            else
-            {
-                return 0;
-
+            else{
+                double loanAmount = getTotalPrice();
+                int timePeriod = 24;
+                interestRate = 4.25 / 100;
+                double monthlyPayment = (loanAmount * interestRate * Math.pow(1 + interestRate, timePeriod)) / (Math.pow(1 + interestRate, timePeriod) - 1);
+                return monthlyPayment;
             }
-
+        }
+        else
+        {
+            return 0;
         }
 
-        return getTotalPrice();
     }
-
-    public double getTotalPrice()
-    {
-        double totalprice = super.getTotalPrice();
-        double salesTaxAmount = totalprice + SalesTaxAmount;
-        return totalprice + salesTaxAmount + RecordingFee + ProcessingFee;
-
-    }
-
 }
+
 
 
 
