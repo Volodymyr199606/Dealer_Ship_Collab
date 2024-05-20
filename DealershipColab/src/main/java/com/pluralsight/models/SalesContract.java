@@ -5,7 +5,7 @@ import com.sun.source.tree.BinaryTree;
 public class  SalesContract extends Contract
 {
 
-    private static final double SalesTaxAmount = 0.05;
+    private  double SalesTaxAmount;
     private static final int RecordingFee = 100;
     private  double ProcessingFee ;
     private boolean finance;
@@ -13,10 +13,13 @@ public class  SalesContract extends Contract
 
 
 
-    public SalesContract(String fullName, String customerEmail, Vehicle vehicleSold, double totalPrice, double monthlyPayment, double SalesTaxAmount, int RecodringFee, double ProcessingFee, boolean finance)
+    public SalesContract(String dateVehicleSold, String fullName, String customerEmail, Vehicle vehicleSold, double totalPrice, double monthlyPayment, double SalesTaxAmount, int RecodringFee, double ProcessingFee, boolean finance)
     {
-        super(fullName, customerEmail, vehicleSold, totalPrice, monthlyPayment);
+        super(dateVehicleSold,fullName, customerEmail, vehicleSold, totalPrice, monthlyPayment);
         this.finance = finance;
+        this.SalesTaxAmount = SalesTaxAmount;
+        this.re
+
 
     }
 

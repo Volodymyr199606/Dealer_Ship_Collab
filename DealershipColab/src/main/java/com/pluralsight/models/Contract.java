@@ -1,7 +1,11 @@
 package com.pluralsight.models;
 
+import java.rmi.dgc.Lease;
+import java.util.ArrayList;
+
 public abstract class Contract
 {
+    private String dateVehicleSold;
     private String fullName;
     private String address;
     private String phoneNumber;
@@ -9,13 +13,27 @@ public abstract class Contract
     private Vehicle vehicleSold;
     private double totalPrice;
     private double monthlyPayment;
+    private ArrayList<Contract> contracts;
 
-    public Contract(String fullName, String customerEmail, Vehicle vehicleSold, double totalPrice, double monthlyPayment) {
+    public Contract(String dateVehicleSold,String fullName, String customerEmail, Vehicle vehicleSold, double totalPrice, double monthlyPayment) {
+        this.dateVehicleSold = dateVehicleSold;
         this.fullName = fullName;
         this.customerEmail = customerEmail;
         this.vehicleSold = vehicleSold;
         this.totalPrice = totalPrice;
         this.monthlyPayment = monthlyPayment;
+        contracts = new ArrayList<>();
+    }
+
+    public void addContract(SalesContract sales)
+    {
+        contracts.add(sales);
+    }
+
+
+    public void addContract(LeaseContract sales)
+    {
+        contracts.add(sales);
     }
 
     public String getFullName() {
