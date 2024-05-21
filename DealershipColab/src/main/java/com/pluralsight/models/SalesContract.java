@@ -6,10 +6,10 @@ public class  SalesContract extends Contract
 {
 
     private  double SalesTaxAmount;
-    private static final int RecordingFee = 100;
+    private  int RecordingFee ;
     private  double ProcessingFee ;
     private boolean finance;
-    private double interestRate = 4.25 / 100;
+    private double interestRate ;
 
 
 
@@ -18,7 +18,7 @@ public class  SalesContract extends Contract
         super(dateVehicleSold,fullName, customerEmail, vehicleSold, totalPrice, monthlyPayment);
         this.finance = finance;
         this.SalesTaxAmount = SalesTaxAmount;
-        this.re
+
 
 
     }

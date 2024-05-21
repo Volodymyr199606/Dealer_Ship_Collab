@@ -50,7 +50,7 @@ public class ContractFileManager
                 String type = contractDetails[0];
                 switch (type.toLowerCase()){
                     case "sales":
-                        int contractDate = Integer.parseInt(contractDetails[1]);
+                        String contractDate = contractDetails[1];
                         String name = contractDetails[2];
                         String emailAddress =  contractDetails[3];
                         int carId = Integer.parseInt(contractDetails[4]);
@@ -67,7 +67,8 @@ public class ContractFileManager
                         double totalCost = Double.parseDouble(contractDetails[15]);
                         boolean finance = Boolean.parseBoolean (contractDetails[16]);
                         double monthlyPayment = Double.parseDouble(contractDetails[17]);
-                        SalesContract information = new SalesContract(contractDate,name,emailAddress,carId,carYear,makeCar,carModel,vehicleType,vehicleColor,odometer,price,salesTax,recordingFee,processingFee,totalCost,finance,monthlyPayment);
+                        Vehicle vehicleInformation = new Vehicle(carId,carYear,makeCar,carModel,vehicleType,vehicleColor,odometer,price);
+                        SalesContract information = new SalesContract(contractDate,name,emailAddress,vehicleInformation,totalCost,monthlyPayment,salesTax,recordingFee,processingFee,finance);
                         //Vehicle information = new Vehicle(vin, year, make, model, vehicleType, color, odometer, price);
                         //                dealership.addVehicle(information);
                         contract.addContract(information);
@@ -88,7 +89,7 @@ public class ContractFileManager
                         int leaseFee = Integer.parseInt(contractDetails[13]);
                         int totalCost1 = Integer.parseInt(contractDetails[14]);
                         double monthlyPayment1 = Double.parseDouble(contractDetails[15]);
-                        Dealership.add(LeaseContract);
+                      //
                         break;
                     default:
                         break;
@@ -99,7 +100,7 @@ public class ContractFileManager
         {
             System.out.println("was not able to load");
         }
-        return con
+        return contract;
     }
 
 
